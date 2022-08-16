@@ -4,7 +4,7 @@ metadata:
   name: mlflow-configmap
 data:
   # property-like keys; each key maps to a simple value
-  DEFAULT_ARTIFACT_ROOT: "gs://your_gs_uri"
+  DEFAULT_ARTIFACT_ROOT: s3://mlflow/
   DB_NAME: postgres
   DB_USERNAME: postgres
-  DB_HOST: "<YOUR_DB_PUBLIC_IP>"
+  DB_HOST: data-sci2.movio.co

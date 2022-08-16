@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: mlflow-tracking-server-pod
-          image: davidcjw/example-mlflow:1.0
+          image: wcaicedo/mlflow-tracking-server:latest
           ports:
             - containerPort: 5000
           resources:
@@ -61,11 +61,32 @@ metadata:
     app: mlflow-tracking-server
   name: mlflow-tracking-server
 spec:
-  type: NodePort
   selector:
     app: mlflow-tracking-server-pods
+  type: NodePort
   ports:
-  - port: 5000
-    protocol: TCP
-    targetPort: 5000
-    nodePort: 30100
+    - name: http
+      nodePort: 30036
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
+
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: mlflow-ingress
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#   - http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: mlflow-tracking-server
+#             port:
+#               number: 5000

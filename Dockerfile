@@ -25,5 +25,5 @@ ENV DEFAULT_ARTIFACT_ROOT=s3://mlflow
 ENTRYPOINT mlflow server \
   --host=0.0.0.0 \
   --port=5000 \
-  --backend-store-uri=postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:5455/${DB_NAME} \
+  --backend-store-uri=postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:5432/${DB_NAME} \
   --default-artifact-root=${DEFAULT_ARTIFACT_ROOT}
